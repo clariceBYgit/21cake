@@ -1,0 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+a{text-decoration: none;}
+li{list-style: none;}
+body{
+  font-size: 13px;
+  font-family: 'PingFang SC','Heiti SC','微软雅黑',Helvetica,Arial;
+}
