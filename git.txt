@@ -1,0 +1,72 @@
+$ git update-git-for-windows  		git升级命令
+$ mkdir learngit   					创建一个空目录	
+$ cd learngit						进入该目录	
+$ pwd								查看目录结构
+$ git init							把这个目录变成Git可以管理的仓库
+
+添加文件到git仓库需要两步
+$ git add 文件名  
+$ git commit -m 自定义内容
+
+$ git status 						要随时掌握工作区的状态
+$ git diff							如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+$ git log --pretty=oneline			显示从最近到最远的提交日志
+$ git reflog						查看命令历史
+$ git reset --hard 1094a			Git允许我们在版本的历史之间穿梭
+
+工作区>>>>暂存区>>>>仓库git
+.git目录>>>>git>>>>addgit commit- 
+
+$ git checkout -- file				当想直接丢弃工作区的修改时
+$ git reset HEAD <file>				修改了工作取得文件还添加倒了暂存区丢弃修改时
+
+远程仓库
+SSH Key
+$ ssh-keygen -t rsa -C "youremail@example.com"
+
+$ git remote add origin git@github.com:自己得gethub账号/上传的文件.git 关联一个远程库
+$ git push -u origin master  第一次推送分支的所有内容
+$ git push origin master 以后推送就用这个命令
+
+$git pull --rebase origin master 推送失败输入
+
+$ git clone git@github.com:自己得gethub账号/克隆的文件.git  要克隆一个仓库
+
+创建于合并分支
+$git branch  			查看分支
+$git branch <name>   	创建分支
+$git switch <name>		切换分支
+$git switch -c <name> 	创建+切换分支
+$git merge <name> 		合并某分支到当前分支
+$git branch -d <name> 	删除分支
+$git log --graph        查看分支合并图
+合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支
+当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场
+
+
+因此，多人协作的工作模式通常是这样：
+
+首先，可以试图用git push origin <branch-name>推送自己的修改；
+
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+
+如果合并有冲突，则解决冲突，并在本地提交；
+
+没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
+
+如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+小结
+查看远程库信息，使用git remote -v；
+
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
