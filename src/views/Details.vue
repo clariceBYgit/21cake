@@ -1,13 +1,14 @@
 <template>
   <div>
     <my-header />
-    <div class="tag-nav">
+    <div id='nav' class="tag-nav">
       <h2>Bailey's Love Triangle 百利甜情人</h2>
-      <h2>¥298.00/908g(2.0磅)</h2>
-      <a class="add-cart">
-        <p></p>
-        <i></i>
-      </a>
+      <h2>¥298.00/908g(2.0磅)
+        <a class="add-cart">
+          <p></p>
+          <i></i>
+        </a>  
+      </h2>
     </div>
     <!-- 点击小图显示大图 -->
     <div class="des">
@@ -82,19 +83,44 @@
               <p v-html="size"></p>
               <!-- 具体的人数等描述 -->
               <ul>
-                <li></li>
-                <li></li>
+                <li>
+                  <i></i>
+                  <p>约13.5x13.5</p>
+                </li>
+                <li>
+                  <i></i>
+                  <p>适合3-4人分享</p>
+                </li>
+                <li>
+                  <i></i>
+                  <p>含5套餐具（蜡烛需单独订购）</p>
+                </li>
+                <li>
+                  <i></i>
+                  <p>最早明天 09:30配送</p>
+                </li>
               </ul>
             </div>
-            <!--  -->
-            <ul>
-              <li>商品规格</li>
-              <li></li>
-            </ul>
-            <ul>
-              <li>换购商品</li>
-              <li></li>
-            </ul>
+            <!--  选择蛋糕尺寸-->
+            <dl>
+              <dt>商品规格</dt>
+              <dd>
+                <ul>
+                  <li>
+                    <a href="javascript:;">
+                      <i></i>
+                      <span>454g</span>
+                      <span>(1.0磅)</span>
+                    </a>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+            <!-- 换购商品 -->
+            <dl>
+              <dt>换购商品</dt>
+              <dd></dd>
+            </dl>
               <span></span>
           </div>
           <button>立即购买</button>
@@ -197,7 +223,7 @@ export default {
   },
   methods: {
     change(index) {
-      console.log(index);
+      // console.log(index);
       var src1 = this.smImgs[0].src;
       var src2 = this.smImgs[1].src;
       var src3 = this.smImgs[2].src;
@@ -214,8 +240,23 @@ export default {
         big.style = "width:924px;";
         this.i = index;
       }
+    },
+    handleScorll(){
+      var scorllTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if(scorllTop > 1100 ){
+        nav.style='display:block'
+      }else{
+        
+        nav.style='display:none'
+      }
+      // console.log(scorllTop)
     }
+
+  },
+  mounted(){
+    window.addEventListener('scroll',this.handleScorll)
   }
+  
 };
 </script>
 <style lang="less">
@@ -233,25 +274,44 @@ export default {
   width: 27px;
   height: 28px;
   background-size: 20px 20px;
-  margin-bottom: -6px;
+  margin-bottom: -8px;
 }
 
 .tag-nav {
   width: 100%;
   height: 70px;
   overflow: hidden;
-  a {
+  color:@font;
+  display: none;
+  position: fixed;
+  top:0;
+  background: #ffffff;
+  height: 70px;
+  box-shadow: 0px 2px 4px 0px rgba(196,196,196,0.50);
+   h2:first-child{
+     float: left;
+     margin-top: 1.5%;
+     font-weight: 500;
+   }
+   h2{
+     float: right;
+     font-weight: 500;
+     margin-top: 1.5%;
+     font-weight: 500;
+     a {
     float: right;
     i {
-      display: inline-block;
-      vertical-align: middle;
-      background: url(../../public/imgs/index/icons.png) no-repeat;
-      background-position: -216px -40px;
-      background-size: 310px 120px;
-      height: 28px;
-      width: 28px;
-      margin-right: 2px;
+        display: inline-block;
+        vertical-align: middle;
+        background: url(/img/icons.213b6b61.png) no-repeat;
+        background-position: -175px -33px;
+        background-size: 348px 102px;
+        height: 26px;
+        width: 30px;
+        margin-right: 5px;
     }
+   }
+    
   }
 }
 .des {
@@ -376,18 +436,69 @@ export default {
       }
     }
     // 右边
-    .right {
+    .right { 
       width: 500px;
       .box{
         .box_des{
           img{
-            width: 300px;
+            width: 59%;
           }
           p{
-          // .desc-price;
+          display: inline;
           font-size:@font-size;
+          color: #C69C6D;
+          span{
+            font-size: @font-size - 8px;
+          }
+         }  
+
+         ul {
+           li{
+             i{
+                display: inline-block;
+                vertical-align: text-bottom;
+                width: 28px;
+                height: 28px;
+                margin: 0 11px 0 0;
+             }
+             p{
+               font-size: @font-size/2;
+              color: @font;
+              line-height: 15px;
+             }
+           
+          }
+          li:first-child{
+            i{
+              background:url(/img/icons.213b6b61.png) no-repeat -206px 3px;
+              background-size: 310px 120px;
+            }
+            }
+            li:nth-child(2){
+              i{ 
+                background:url(/img/icons.213b6b61.png) no-repeat -233px 3px;
+                background-size: 310px 120px;
+              }
+              
+            }
+              li:nth-child(3){
+              i{ 
+                background:url(/img/icons.213b6b61.png) no-repeat -259px 2px;
+                background-size: 310px 120px;
+              }
+            }
+            li:last-child{
+              i{
+                background:url(/img/icons.213b6b61.png) no-repeat -284px 2px;
+                background-size: 310px 120px;
+              }
+            }
+          
          }
+
+
         }
+      
 
       }
 
