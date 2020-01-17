@@ -2,10 +2,9 @@
   margin: 0;
   padding: 0;
 }
-
-a{text-decoration: none;
+a{
+  text-decoration: none;
 }
-ul li{list-style: none;}
-body{
-  font-family: 'PingFang SC','Heiti SC','微软雅黑',Helvetica,Arial;
+ul li{
+  list-style: none;
 }

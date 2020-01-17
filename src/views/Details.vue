@@ -63,11 +63,11 @@
               <i id="sweet_active"></i>
               <span>参考甜度：</span>
               <span class="sweets">
-                <i id="sweet_active"></i>
-                <i id="sweet_active"></i>
-                <i id="sweet_active"></i>
-                <i id="sweet_active"></i>
-                <i id="sweet"></i>
+                <i   id="sweet_active"></i>
+                <i   id="sweet_active"></i>
+                <i   id="sweet_active"></i>
+                <i   id="sweet_active"></i>
+                <i   id="sweet"></i>
               </span>
             </li>
           </ul>
@@ -102,11 +102,11 @@
               </ul>
             </div>
             <!--  选择蛋糕尺寸-->
-            <dl>
+            <dl class="cakeSi">
               <dt>商品规格</dt>
               <dd>
                 <ul>
-                  <li>
+                  <li @click="add">
                     <a href="javascript:;">
                       <i></i>
                       <span>454g</span>
@@ -221,6 +221,7 @@ export default {
       ]
     };
   },
+  props:[],//从父组件传来的数据  ['lid']
   methods: {
     change(index) {
       // console.log(index);
@@ -246,11 +247,40 @@ export default {
       if(scorllTop > 1100 ){
         nav.style='display:block'
       }else{
-        
         nav.style='display:none'
       }
       // console.log(scorllTop)
+    },
+    add(e){
+      e.target.className='act-bor'
+      console.log(e)
     }
+
+
+  },
+  watch:{},//监视某一变量的变化
+  computed:{},//计算属性
+  // 当着组件对象创建后，自动执行！
+  created(){
+    // 发送ajax请求
+    // es7
+  /*  (async function(){ //微信小程序中可省略
+      var result = await this.$axios.get(
+        'http://localhost:3000/details',
+        {
+          params:{
+            lid:this.lid
+          }
+        }
+      );
+      console.log(result.data)
+    })();*/
+    // es6
+  /*  this.$axios.get(
+      'http://localhost:3000/index'
+    ).then(result=>{
+      console.log(result.data)
+    })*/
 
   },
   mounted(){
@@ -276,7 +306,13 @@ export default {
   background-size: 20px 20px;
   margin-bottom: -8px;
 }
+// 当被选中是  边框等的颜色
+.act-bor{
+  border: 1px solid @font;
+}
+// .act-i{
 
+// }
 .tag-nav {
   width: 100%;
   height: 70px;
@@ -495,10 +531,49 @@ export default {
             }
           
          }
-        // 选择蛋糕尺寸
-
+          
         }
-      
+        // 选择蛋糕尺寸
+        .cakeSi{
+          dt{
+            float: left;
+            width: 52px;
+            padding-right: 20px;
+          }
+            dd{
+              float: left;
+              ul {
+                 li{
+                a{
+                  float: left;
+                  width: 43px;
+                  // border: 1px solid @border;
+                  padding: 0 10px;
+                  text-align: center;
+                  i{
+                    float: left;
+                    width: 10px;
+                    height: 10px;
+                    background: url(../../public/imgs/index/icons.png) no-repeat  0px -40px;
+                    background-size: 310px 120px;
+                    margin: 0 0 0 -10px;
+                  }
+                  span{
+                    display: block;
+                  }
+                }
+              }
+
+              }
+             
+            }
+          &:after{
+            content: '';
+            display: block;
+            clear: both;
+          }
+          
+        }
 
       }
 
